@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/homePage";
-import ItemPage from "./pages/itemPage";
+import ShopPage from "./pages/shopPage";
 
 function App() {
   return (
@@ -9,9 +9,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <HomePage />
-        </Route>{" "}
-        <Route exact path="/:title">
-          <ItemPage />
+        </Route>
+        <Route exact path="/shop">
+          <ShopPage />
         </Route>
       </Switch>
     </div>
