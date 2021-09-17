@@ -34,7 +34,12 @@ const SignIn = () => {
           required
         />
         <Button type="submit">Signin</Button>
-        <Button type="button" onClick={signInWithGoogle}>
+        <Button
+          type="button"
+          className="ml-3"
+          isGoogleSignIn
+          onClick={signInWithGoogle}
+        >
           Sign in with google
         </Button>
       </form>

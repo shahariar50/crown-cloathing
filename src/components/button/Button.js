@@ -1,9 +1,14 @@
 import React from "react";
 import "./button.styles.scss";
 
-const Button = ({ children, ...props }) => {
+const Button = ({ children, isGoogleSignIn, className, ...props }) => {
   return (
-    <button className="customButton" {...props}>
+    <button
+      className={`${
+        isGoogleSignIn ? "google-sign-in" : ""
+      } customButton ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
