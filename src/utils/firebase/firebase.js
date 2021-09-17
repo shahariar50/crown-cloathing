@@ -1,0 +1,29 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCPERMlrMTOCF7Z4qgZFpsclhfky_tpCDI",
+  authDomain: "crown-db-6d8c7.firebaseapp.com",
+  projectId: "crown-db-6d8c7",
+  storageBucket: "crown-db-6d8c7.appspot.com",
+  messagingSenderId: "359505963707",
+  appId: "1:359505963707:web:016b9002c54e47954c579e",
+  measurementId: "G-YQ3CMBSFPT",
+};
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+
+// Initialize Firebase
+const analytics = getAnalytics(app);
+export const signInWithGoogle = () => signInWithPopup(auth, provider);
+
+export default analytics;

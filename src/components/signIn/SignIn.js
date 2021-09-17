@@ -1,4 +1,7 @@
 import React from "react";
+import { signInWithGoogle } from "../../utils/firebase/firebase";
+import Button from "../button/Button";
+import FormInput from "../formInput/FormInput";
 import "./signIn.styles.scss";
 
 const SignIn = () => {
@@ -14,23 +17,26 @@ const SignIn = () => {
       <span>Sign in with your email and password.</span>
 
       <form>
-        <input
+        <FormInput
+          label="Email"
+          onChange={handleOnChange}
           name="email"
           type="email"
-          onChange={handleOnChange}
           value={loginData.email}
           required
         />
-        <label>Email</label>
-        <input
+        <FormInput
+          label="Password"
+          onChange={handleOnChange}
           name="password"
           type="password"
-          onChange={handleOnChange}
           value={loginData.password}
           required
         />
-        <label>Password</label>
-        <input type="submit" value="Submit" />
+        <Button type="submit">Signin</Button>
+        <Button type="button" onClick={signInWithGoogle}>
+          Sign in with google
+        </Button>
       </form>
     </div>
   );
