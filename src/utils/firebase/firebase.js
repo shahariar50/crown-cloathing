@@ -2,6 +2,13 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  getFirestore,
+  getDoc,
+  collection,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,9 +24,40 @@ const firebaseConfig = {
   measurementId: "G-YQ3CMBSFPT",
 };
 const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
+
+  const usersRef = collection(db, "users");
+  const docRef = doc(db, "users", userAuth.uid);
+  const docSnep = await getDoc(docRef);
+
+  if (!docSnep.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      setDoc(doc(usersRef, userAuth.uid), {
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.log("Error creating user", error.message);
+    }
+
+    console.log(displayName, email);
+  }
+  // querySnapshot.forEach((doc) => {
+  //   console.log(`${doc.id} => ${doc.data()}`);
+  // });
+};
 
 export const auth = getAuth();
 const provider = new GoogleAuthProvider();
+
 provider.setCustomParameters({ prompt: "select_account" });
 
 // Initialize Firebase

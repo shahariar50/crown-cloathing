@@ -1,3 +1,4 @@
+import { createUserProfileDocument } from "./utils/firebase/firebase";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -14,7 +15,9 @@ function App() {
 
   React.useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    unsubscribeAuth = auth.onAuthStateChanged((user) => {
+    unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user);
+
       setCurrentUser(user);
 
       return () => {
