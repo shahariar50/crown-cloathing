@@ -47,12 +47,9 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     } catch (error) {
       console.log("Error creating user", error.message);
     }
-
-    console.log(displayName, email);
   }
-  // querySnapshot.forEach((doc) => {
-  //   console.log(`${doc.id} => ${doc.data()}`);
-  // });
+
+  return docSnep;
 };
 
 export const auth = getAuth();

@@ -3,9 +3,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
-import HomePage from "./pages/homePage";
+import HomePage from "./pages/homepage/homePage";
 import ShopPage from "./pages/shopPage";
-import SignAndSignUpPage from "./pages/signAndSignUpPage";
+import SignAndSignUpPage from "./pages/signinAndSignupPage/signAndSignUpPage";
 import { auth } from "./utils/firebase/firebase";
 
 function App() {
@@ -16,9 +16,11 @@ function App() {
   React.useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+      const snapRef = await createUserProfileDocument(user);
 
-      setCurrentUser(user);
+      if (snapRef) {
+        setCurrentUser({ id: snapRef.id, ...snapRef.data() });
+      }
 
       return () => {
         unsubscribeAuth();
