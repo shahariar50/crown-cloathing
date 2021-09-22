@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import React from "react";
-import { auth } from "../../utils/firebase/firebase";
+import { auth, createUserProfileDocument } from "../../utils/firebase/firebase";
 import Button from "../button/Button";
 import FormInput from "../formInput/FormInput";
 import "./signup.styles.scss";
@@ -29,6 +29,8 @@ const Signup = () => {
         formData.email,
         formData.password
       );
+
+      createUserProfileDocument(user, { displayName: formData.displayName });
 
       setFormData({
         displayName: "",
