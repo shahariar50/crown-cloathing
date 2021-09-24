@@ -11,3 +11,15 @@ export const checkIfTheCartItemExist = (cartItems, cartItemToAdd) => {
 
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
+
+export const decreaseCartItemQuantity = (cartItems, cartItemToAdd) => {
+  if (cartItemToAdd.quantity === 1) {
+    return cartItems.filter((item) => item.id !== cartItemToAdd.id);
+  }
+
+  return cartItems.map((item) =>
+    item.id === cartItemToAdd.id && item.quantity > 0
+      ? { ...item, quantity: item.quantity - 1 }
+      : item
+  );
+};
