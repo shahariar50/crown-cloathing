@@ -4,8 +4,13 @@ import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/img/crown.svg";
 import { auth } from "../../utils/firebase/firebase";
 import CartIcon from "../icon/cartIcon/CartIcon";
+import CartDropdown from "../cart/CartDropdown";
+import { connect } from "react-redux";
+import { toggleCartHidden } from "../../store/reducer/cartReducer";
 
-const Header = ({ currentUser }) => {
+const mapStateToProps = ({ cart }) => ({ cart });
+
+const Header = ({ currentUser, cart, dispatch }) => {
   return (
     <div className="header">
       <Link className="logoContainer" to="/">
@@ -28,10 +33,11 @@ const Header = ({ currentUser }) => {
             Login/Signin
           </Link>
         )}
-        <CartIcon />
+        <CartIcon onClick={() => dispatch(toggleCartHidden())} />
       </div>
+      {!cart.cartHidden && <CartDropdown />}
     </div>
   );
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);
