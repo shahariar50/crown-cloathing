@@ -4,7 +4,7 @@ import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/img/crown.svg";
 import { auth } from "../../utils/firebase/firebase";
 import CartIcon from "../icon/cartIcon/CartIcon";
-import CartDropdown from "../cart/CartDropdown";
+import CartDropdown from "../cart/cartDropdown/CartDropdown";
 import { connect } from "react-redux";
 import { toggleCartHidden } from "../../store/reducer/cartReducer";
 
@@ -35,7 +35,7 @@ const Header = ({ currentUser, cart, dispatch }) => {
         )}
         <CartIcon onClick={() => dispatch(toggleCartHidden())} />
       </div>
-      {!cart.cartHidden && <CartDropdown />}
+      {!cart.cartHidden && <CartDropdown items={cart.data} />}
     </div>
   );
 };

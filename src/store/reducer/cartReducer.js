@@ -8,10 +8,10 @@ const cartSlice = createSlice({
     data: [],
   },
   reducers: {
-    toggleCartHidden: (state) => ({ cartHidden: !state.cartHidden }),
+    toggleCartHidden: (state) => ({ ...state, cartHidden: !state.cartHidden }),
     addItemToCart: (state, action) => ({
       ...state,
-      data: [...state.data, action.payload],
+      data: [...action.payload],
     }),
   },
 });
