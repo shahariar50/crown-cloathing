@@ -9,6 +9,7 @@ import SignAndSignUpPage from "./pages/signinAndSignupPage/signAndSignUpPage";
 import { auth } from "./utils/firebase/firebase";
 import { connect } from "react-redux";
 import { setUser } from "./store/reducer/userReducer";
+import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
 
 const mapStateToProps = ({ user }) => ({ user });
 
@@ -49,6 +50,9 @@ function App({ dispatch, user }) {
             user.data ? <Redirect to="/" /> : <SignAndSignUpPage />
           }
         />
+        <Route exact path="/checkout">
+          <CheckoutPage />
+        </Route>
       </Switch>
     </div>
   );
