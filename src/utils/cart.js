@@ -9,7 +9,5 @@ export const checkIfTheCartItemExist = (cartItems, cartItemToAdd) => {
     );
   }
 
-  console.log([...cartItems, { ...cartItemToAdd, quantity: 1 }]);
-
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };

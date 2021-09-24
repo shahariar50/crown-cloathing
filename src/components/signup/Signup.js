@@ -38,7 +38,6 @@ const Signup = () => {
         password: "",
         confirmPassword: "",
       });
-      console.log(user);
     } catch (err) {
       console.log(err);
     }
