@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 
 const SHOP_STATE = [
   {
@@ -252,5 +253,10 @@ const shopSlice = createSlice({
   name: "shop",
   initialState: { loading: false, data: SHOP_STATE },
 });
+
+export const selectCategoryItemByParam = (param) =>
+  createSelector([(shop) => shop.data], (data) => {
+    return data.find((item) => item.routeName === param);
+  });
 
 export default shopSlice.reducer;

@@ -10,6 +10,7 @@ import { auth } from "./utils/firebase/firebase";
 import { connect } from "react-redux";
 import { setUser } from "./store/reducer/userReducer";
 import CheckoutPage from "./pages/checkoutPage/CheckoutPage";
+import Categorypage from "./pages/categorypage";
 
 const mapStateToProps = ({ user }) => ({ user });
 
@@ -43,6 +44,7 @@ function App({ dispatch, user }) {
         <Route exact path="/shop">
           <ShopPage />
         </Route>
+        <Route exact path="/shop/:category" component={Categorypage} />
         <Route
           exact
           path="/signin-and-signup"

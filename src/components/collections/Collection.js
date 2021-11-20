@@ -1,14 +1,14 @@
 import React from "react";
 import CollectionItem from "./CollectionItem";
-import "./collectionItems.styles.scss";
+import "./collection.styles.scss";
 
-const CollectionItems = ({ title, items }) => {
+const Collection = ({ title, items, limit = false }) => {
   return (
     <div className="collectionItems">
-      <h1 className="title">{title}</h1>
+      {title && <h1 className="title">{title}</h1>}
       <div className="preview">
         {items
-          .filter((item, index) => index < 4)
+          ?.filter((item, index) => (limit ? index < limit : true))
           .map((item) => (
             <CollectionItem key={item.id} item={item} />
           ))}
@@ -17,4 +17,4 @@ const CollectionItems = ({ title, items }) => {
   );
 };
 
-export default CollectionItems;
+export default Collection;
